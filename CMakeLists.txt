@@ -1,10 +1,22 @@
-cmake_minimum_required(VERSION 2.8)
+CMAKE_MINIMUM_REQUIRED(VERSION 3.1)
 
-project(tfsm)
+PROJECT(tfsm
+	    LANGUAGES CXX)
 
-set (CMAKE_CXX_STANDARD 11)
+
+find_package(Qt5Test REQUIRED)
+
+SET(CMAKE_AUTOMOC ON)
+SET(CMAKE_INCLUDE_CURRENT_DIR ON)
+SET(CMAKE_CXX_STANDARD 11)
+SET(CMAKE_CXX_STANDARD_REQUIRED ON)
+ENABLE_TESTING()
 
 file(GLOB HDR *.h *.hpp)
 file(GLOB SRC *.cpp)
 
 add_executable(${PROJECT_NAME} ${HDR} ${SRC})
+add_test(${PROJECT_NAME} COMMAND ${PROJECT_NAME})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Test)
+
