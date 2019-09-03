@@ -189,7 +189,7 @@ void tfsm_tests::mealy_observer()
 		},
 		S::S0,
 		Y::YV,
-		[&](Y y, S s)
+		[&targetOutput, &targetState](Y y, S s)
 		{
 			QCOMPARE(y, targetOutput);
 			QCOMPARE(s, targetState);
@@ -322,7 +322,7 @@ void tfsm_tests::moore_observer()
 			{S::S2, X::X0, S::S0}
 		},
 		S::S0,
-		[&](S s)
+		[&targetState](S s)
 		{
 			QCOMPARE(s, targetState);
 		}
